@@ -12,4 +12,5 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Show OS
+        shell: bash
         run: echo "I am running on ${{ runner.os }}"
