@@ -1,6 +1,8 @@
 name: 02 - Workflow Events
 on:
-    workflow_dispatch:
+    schedule:
+      - cron: '*/1 * * * *'
+    
 jobs:
     echo:
       runs-on: ubuntu-latest
