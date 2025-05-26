@@ -3,6 +3,11 @@ on:
     schedule:
       - cron: '* * * * *'
     
+    workflow_dispatch:
+    push:
+      branches:
+        - main  
+     
 jobs:
     echo:
       runs-on: ubuntu-latest
