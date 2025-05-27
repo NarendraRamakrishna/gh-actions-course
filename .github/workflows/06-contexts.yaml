@@ -1,7 +1,12 @@
 name: 06 - contexts
-run-name: My custom workflow run name - ${{ runner.os }}
+run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}
 on:
   workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Enable debug mode'
+        type: boolean
+        default: false
   push:
     branches:
       - main
