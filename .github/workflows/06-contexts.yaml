@@ -7,12 +7,17 @@ on:
         description: 'Enable debug mode'
         type: boolean
         default: false
-  push:
-    branches:
-      - main
+env:
+  MY_WORKFLOW_VAR: 'WORKFLOW_VAR'
+  MY_OVERWRITTEN_VAR: 'WORKFLOW_OVERWRITTEN_VAR'
+  
 jobs:
   echo-data:
     runs-on: ubuntu-latest
+    env:
+      MY_JOB_VAR: 'JOB_VAR'
+      MY_OVERWRITTEN_VAR: 'JOB_OVERWRITTEN_VAR'
+      
     steps:
     - name: Show GitHub context information
       run: |
@@ -26,4 +31,16 @@ jobs:
     - name: Retrieve Variable
       run: |
         echo "The variable is ${{ vars.MY_VAR }}"
+    - name: Retrieve Environment Variable
+      env:
+        MY_OVERWRITTEN_VAR: 'STEP_OVERWRITTEN_VAR'
+      run: |
+        echo "Workflow environment variable ${{ env.MY_WORKFLOW_VAR }}"
+        echo "Overwritten workflow environment variable ${{ env.MY_OVERWRITTEN_VAR }}"
+        
+    - name: Retrieve Environment Variable with Job Context
+      run: |
+        echo "Workflow environment variable ${{ env.MY_WORKFLOW_VAR }}"
+        echo "Overwritten workflow environment variable ${{ env.MY_OVERWRITTEN_VAR }}"
+      
       
