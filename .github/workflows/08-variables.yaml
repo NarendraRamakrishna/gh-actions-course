@@ -37,14 +37,14 @@ jobs:
     steps:
     - name: Print Env Variables
       run: |
-        echo "Repository variable: ${{ vars.REPOSITORY_VAR }}"
+        echo "Repository variable: ${{ vars.MY_VAR }}"
   echo-prod:
     runs-on: ubuntu-latest
     environment: staging
     steps:
     - name: Print Prod Variables
       run: |
-        echo "Repository variable: ${{ vars.REPOSITORY_VAR }}"
+        echo "Repository variable: ${{ vars.MY_VAR }}"
         echo "Environment variable: ${{ vars.TARGET_VAR }}"
   echo-undefined:
     runs-on: ubuntu-latest  
