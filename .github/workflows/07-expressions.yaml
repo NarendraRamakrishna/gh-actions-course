@@ -22,7 +22,7 @@ jobs:
             echo "Runner OS is ${{ runner.os }}"
 
         - name: Print when triggered from main branch
-          if: ${{ github.ref == 'refs/heads/main' && inputs.debug == true }}
+          if: ${{ github.ref == 'refs/heads/main' && (inputs.debug == true || inputs.debug == 'true') }}
           run: echo "This workflow was triggered from the main branch"
 
         - name: Greeting
