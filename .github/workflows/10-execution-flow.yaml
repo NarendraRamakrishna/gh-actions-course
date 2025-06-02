@@ -22,7 +22,7 @@ jobs:
             - name: Running Unit Tests
               run: echo "Running unit tests..."
             - name: Failing Tests
-              if: ${{ inputs.pass-unit-tests == 'false' }}
+              if: ${{ inputs.pass-unit-tests == false }}
               run: |
                 echo "Unit tests failed!"
                 exit 1
