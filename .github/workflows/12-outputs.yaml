@@ -14,6 +14,8 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        outputs:
+          build_status: ${{ steps.build.outputs.build_status }}
         steps:
         - name: Print GITHUB_OUTPUT path
           run: echo "GITHUB_OUTPUT is at $GITHUB_OUTPUT"
@@ -29,4 +31,4 @@ jobs:
         if: ${{ needs.build.outputs.build_status == 'success' }}
         steps:
         - name: Deploy Project
-          run: echo "Deploying project with build status ${{ steps.build.outputs.build_status }}"
+          run: echo "Deploying project with build status ${{ needs.build.outputs.build_status }}"
