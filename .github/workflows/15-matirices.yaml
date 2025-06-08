@@ -4,6 +4,7 @@ on:
 jobs:
   backwards-compatibility:
     runs-on: ${{ matrix.os }}
+    
 
     strategy:
       fail-fast: false
@@ -56,6 +57,10 @@ jobs:
 
           - color: 'red'
             shape: 'triangle'
+        exclude:
+            - opacity: 75
+              
+                
             
     steps:
       - name: Print Matrix Values
