@@ -44,7 +44,7 @@ jobs:
           # Here you would typically upload your test results, e.g., using actions/upload-artifact
 
   include-example:
-    name: ${{ matrix.color }}- ${{ matrix.shape }}-${{ matrix.size }}
+    name: ${{ matrix.color }}- ${{ matrix.shape }}-${{ matrix.size }} -- ${{ matrix.opacity }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -52,6 +52,8 @@ jobs:
         shape: ['square', 'circle']
         size: ['small', 'large']
         include:
+          - opacity: 50
+
           - color: 'red'
             shape: 'triangle'
             
@@ -61,4 +63,5 @@ jobs:
           echo "Color: ${{ matrix.color }}"
           echo "Shape: ${{ matrix.shape }}"
           echo "Size: ${{ matrix.size }}"
+          echo "Opacity: ${{ matrix.opacity }}"
           
