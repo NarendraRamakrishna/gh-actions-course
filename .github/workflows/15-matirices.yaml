@@ -44,7 +44,7 @@ jobs:
           # Here you would typically upload your test results, e.g., using actions/upload-artifact
 
   include-example:
-    name: ${{ matrix.color }}-{{ matrix.shape }}-{{ matrix.size }}
+    name: ${{ matrix.color }}- ${{ matrix.shape }}-${{ matrix.size }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
