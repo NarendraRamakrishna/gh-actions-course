@@ -8,15 +8,27 @@ on:
             description: 'Select the environment to deploy to'
 
 jobs:
-  echo:
+  echo-staging:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.target-env }}
+    environment: staging
     env:
         my-env-var: ${{ vars.MY_ENV_VALUE   || 'default-value' }}
     steps:
     - name: Print environment
-      run: echo "Deploying to ${{ inputs.target-env }}"
-    - name: 16 - Working with Environments | env - ${{ inputs.target-env }}
+      run: echo "Deploying to ${{ env.my-env-var }}"
+    - name: 16 - Working with Environments | env - ${{ env.my-env-var }}
       run: |
        echo "Environment: ${{ env.my-env-var }}"
-      
+  echo-prod:
+    runs-on: ubuntu-latest
+    environment: prod
+
+    env:
+        my-env-var: ${{ vars.MY_ENV_VALUE   || 'default-value' }}
+    steps:
+    - name: Print environment
+      run: echo "Deploying to ${{ env.my-env-var }}"
+    - name: 16 - Working with Environments | env - ${{ env.my-env-var }}
+      run: |
+       echo "Environment: ${{ env.my-env-var }}"
+          
