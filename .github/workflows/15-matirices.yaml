@@ -42,3 +42,23 @@ jobs:
         run: |
           echo "Uploading test results for Node.js version ${{ matrix.node-version }} on ${{ matrix.os }}"
           # Here you would typically upload your test results, e.g., using actions/upload-artifact
+
+  include-example:
+    name: ${{ matrix.color }}-{{ matrix.shape }}-{{ matrix.size }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        color: ['red', 'green']
+        shape: ['square', 'circle']
+        size: ['small', 'large']
+        include:
+          - color: 'red'
+            shape: 'triangle'
+            
+    steps:
+      - name: Print Matrix Values
+        run: |
+          echo "Color: ${{ matrix.color }}"
+          echo "Shape: ${{ matrix.shape }}"
+          echo "Size: ${{ matrix.size }}"
+          
