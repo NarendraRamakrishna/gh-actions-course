@@ -5,9 +5,16 @@ jobs:
   backwards-compatibility:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         node-version: [16.x, 18.x, 20.x, 21.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
+        include:      
+          
+        - os: ubuntu-latest
+          node-version: 21.x
+          tag: 'experimental'
+            
     defaults:
       run:
         working-directory: 13-caching/react-app
@@ -19,8 +26,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Fail if experimental
+        if: ${{ matrix.tag == 'experimental' }}
+        run: |
+          echo "This is an experimental feature, failing the job."
+          exit 1
 
       - name: Perform some tests
         run: |
           echo "Running tests on Node.js version ${{ matrix.node-version }} on ${{ matrix.os }}"
+          sleep 10  
           # Here you would typically run your tests, e.g., npm test
+      - name: Upload test results
+        run: |
+          echo "Uploading test results for Node.js version ${{ matrix.node-version }} on ${{ matrix.os }}"
+          # Here you would typically upload your test results, e.g., using actions/upload-artifact
