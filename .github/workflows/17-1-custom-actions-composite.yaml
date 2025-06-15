@@ -1,6 +1,13 @@
 name: 17 - 1 - Custom Actions Composite
 on:
   workflow_dispatch:
+    inputs:
+      target-env:
+        type: choice
+        options: [dev, prod]        
+        default: dev
+        description: which environement to target for the build
+
 env:
     working-dir: '04-using-actions/react-app'
 jobs:
@@ -13,11 +20,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4 
       - name: Setup Node and NPM dependencies
-        
+        id: setup-deps
         uses: ./.github/actions/composite-cache-deps
         with:
           node-version: '20.x'
           working-directory: ${{ env.working-dir }}
+          target-env: ${{ inputs.target-env }}
+      
+      - name: Print setup deps output
+        run: |
+         echo "Installed dependencies: ${{ steps.setup-deps.outputs.installed-deps }}"
+        
       - name: Test
         run: npm run test 
         working-directory: ${{ env.working-dir }}
@@ -26,14 +39,4 @@ jobs:
         run: npm run build
         working-directory: ${{ env.working-dir }}
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.x'
-
-      - name: Cache Node and NPM dependencies
-        uses: ./.github/actions/composite-cache-deps
-
-      - name: Run npm install
-        run: npm install
-        working-directory: ./
+    
