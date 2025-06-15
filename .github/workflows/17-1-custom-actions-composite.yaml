@@ -9,7 +9,7 @@ on:
         description: which environement to target for the build
 
 env:
-    working-dir: './../04-using-actions/react-app'
+    working-dir: 04-using-actions/react-app
 jobs:
   build:
     runs-on: ubuntu-latest
