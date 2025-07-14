@@ -1,3 +1,4 @@
+---
 name: Cache Node and NPM dependencies
 description: |
   This action allow to cache bothe Node and NPM dependencies based on the package-lock.json file.
