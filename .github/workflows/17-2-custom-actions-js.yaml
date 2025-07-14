@@ -11,6 +11,12 @@ jobs:
           - name: Checkout code
             uses: actions/checkout@v4
 
+          - name: Install dependencies for custom JS action
+            run: |
+              cd .github/actions/js-dependency-update
+              npm ci
+              cd ../../../..
+
           - name: Check for dependency updates
             uses: ./.github/actions/js-dependency-update
             
