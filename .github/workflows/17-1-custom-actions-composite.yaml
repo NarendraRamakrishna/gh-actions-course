@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
 
 env:
-  working-directory: ./../17-custom-actions-composite/react-app
+  working-directory: ./17-custom-actions/react-app
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./../17-custom-actions-composite/react-app  
+    # defaults:
+    #   run:
+    #     working-directory: ./17-custom-actions-composite/react-app  
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
