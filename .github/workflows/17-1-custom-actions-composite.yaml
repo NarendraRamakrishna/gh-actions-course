@@ -25,11 +25,13 @@ jobs:
         run: |
           echo "Running tests..."
           npm run test  
+        working-directory: ${{ env.working-directory }}
         
       - name: Build
         run: |
           echo "Building the application..."
           npm run build
+        working-directory: ${{ env.working-directory }}
 
 
 
