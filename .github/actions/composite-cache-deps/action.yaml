@@ -1,7 +1,7 @@
 ---
 name: Cache Node and NPM dependencies
 description: |
-  This action allow to cache bothe Node and NPM dependencies based on the package-lock.json file.
+  This action allows caching both Node and NPM dependencies based on the package-lock.json file.
 inputs:
   node-version:
     description: 'Node.js version to use'
@@ -27,7 +27,7 @@ runs:
       uses: actions/cache@v3
       with:
         path: ${{ inputs.working-dir }}/node_modules
-        key: node-modules-${{ hashFiles('${{ inputs.working-dir }}/package-lock.json') }}
+        key: node-modules-${{ hashFiles("${{ inputs.working-dir }}/package-lock.json") }}
 
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
