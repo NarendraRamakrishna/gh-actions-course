@@ -32,8 +32,13 @@ runs:
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       shell: bash
-      working-directory: ${{ inputs.working-dir }}
       run: |
-        npm ci
-        echo "Installed dependencies: ${{ steps.cache.outputs.cache-hit }}"
+        if [ -d "${{ inputs.working-dir }}" ]; then
+          cd "${{ inputs.working-dir }}"
+          npm ci
+          echo "Installed dependencies: ${{ steps.cache.outputs.cache-hit }}"
+        else
+          echo "Working directory '${{ inputs.working-dir }}' does not exist."
+          exit 1
+        fi
 
