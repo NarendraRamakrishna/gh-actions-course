@@ -1,0 +1,6 @@
+name: Update NPM Dependencies
+description: Check if the there are updates to NPM dependencies and create a pull request with the updated package.json and package-lock.json files.
+
+runs:
+  using: node20
+  main: index.js
