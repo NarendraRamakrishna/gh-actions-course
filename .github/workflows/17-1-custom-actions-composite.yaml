@@ -1,42 +1,38 @@
-name: 17 - 1 - Custom Actions Composite
+name: 17 - 1 - Custom Actions - Composite
+
 on:
   workflow_dispatch:
-    inputs:
-      target-env:
-        type: choice
-        options: [dev, prod]        
-        default: dev
-        description: which environement to target for the build
 
 env:
-    working-dir: 04-using-actions/react-app
+  working-directory: 17-custom-actions-composite/react-app
 jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ env.working-dir }}   
+        working-directory: 17-custom-actions-composite/react-app  
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4 
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Setup Node and NPM dependencies
-        id: setup-deps
         uses: ./.github/actions/composite-cache-deps
         with:
-          node-version: '20.x'
-          working-directory: ${{ env.working-dir }}
-          target-env: ${{ inputs.target-env }}
-      
-      - name: Print setup deps output
-        run: |
-         echo "Installed dependencies: ${{ steps.setup-deps.outputs.installed-deps }}"
-        
-      - name: Test
-        run: npm run test 
-        working-directory: ${{ env.working-dir }}
-     
-      - name: Build
-        run: npm run build
-        working-directory: ${{ env.working-dir }}
+          node-version: 20.x
+          working-dir: ${{ env.working-directory }}
 
-    
+      - name: Test
+        run: |
+          echo "Running tests..."
+          npm run test  
+        working-directory: ${{ env.working-directory }}
+        
+      - name: Build
+        run: |
+          echo "Building the application..."
+          npm run build
+        working-directory: ${{ env.working-directory }} 
+          
+
+
+     
