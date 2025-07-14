@@ -35,7 +35,7 @@ jobs:
           if: ${{ inputs.use-cache == true }}
           id: cache-node-modules
           with:
-            key: deps-node-modules-${{ hashFiles('13-caching/read-app/package-lock.json') }}
+            key: deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}
             path: |
               13-caching/react-app/node_modules
 
