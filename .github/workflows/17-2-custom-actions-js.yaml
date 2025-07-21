@@ -25,11 +25,11 @@ jobs:
           - name: Checkout code
             uses: actions/checkout@v4
 
-          # - name: Install dependencies for custom JS action
-          #   run: |
-          #     cd .github/actions/js-dependency-update
-          #     npm ci
-          #     cd ../../../..
+          - name: Install dependencies for custom JS action
+            run: |
+              cd .github/actions/js-dependency-update
+              npm ci
+              cd ../../../..
 
           - name: Check for dependency updates
             uses: ./.github/actions/js-dependency-update
@@ -38,5 +38,11 @@ jobs:
               target-branch: ${{ inputs.target-branch }}
               working-directory: ${{ inputs.working-dir }}
               gh-token: ${{ secrets.GITHUB_TOKEN }}
+
+          # - name: Ensure custom JS action dependencies are installed
+          #   run: |
+          #     cd .github/actions/js-dependency-update
+          #     npm ci
+          #     cd ../../../..
               
             
