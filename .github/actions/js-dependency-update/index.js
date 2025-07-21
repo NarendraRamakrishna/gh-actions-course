@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 
-const exec = require('@actions/exec');
+import * as exec from '@actions/exec';
 
 // Define any inputs your action might need
 // You can read inputs using core.getInput if needed, for example:
