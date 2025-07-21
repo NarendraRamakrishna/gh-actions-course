@@ -3,25 +3,24 @@ description: Check if the there are updates to NPM dependencies and create a pul
 
 inputs:
   base-branch:
-    description: The branch used as the base for dependency update checks.
+    description: The branch used as base for the dependency updates checks
+    required: false
     default: main
-    required: false
-
   target-branch:
-    description: The branch where the pull request will be created.
-    default: update-dependencies
+    description: The branch from which the pull request will be created
     required: false
-  
+    default: update-dependencies
   working-directory:
-    description: The working directory of the project to check for dependency updates.
+    description: The working directory of the project to check for dependency updates
     required: true
-  
+    default: .
   gh-token:
-    description: The GitHub token with repository access to write contents and  create pull requests.
-    required: true
-  
+    description: The GitHub token used to create the pull request. Must have write access to the repository.
+    #required: true
+    default: ${{ secrets.GITHUB_TOKEN }}
   debug:
-    description: Enable debug mode for additional logging.  
+    description: Whether the output debug messages to the console
+    #required: false
     default: 'false'
 
 runs:

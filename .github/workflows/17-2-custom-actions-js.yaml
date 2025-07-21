@@ -3,6 +3,20 @@ run-name: 17 - 2 - Custom Actions - JS
 
 on:
   workflow_dispatch:
+    inputs:
+      base-branch:
+        description: The branch used as base for the dependency updates checks
+        required: false
+        default: main
+      target-branch:
+        description: The branch from which the pull request will be created
+        required: false
+        default: update-dependencies
+      working-dir:
+        description: The working directory of the project to check for dependency updates
+        required: true
+        default: ./17-custom-actions/react-app
+      
 
 jobs:
     dependency-update:
@@ -11,12 +25,17 @@ jobs:
           - name: Checkout code
             uses: actions/checkout@v4
 
-          - name: Install dependencies for custom JS action
-            run: |
-              cd .github/actions/js-dependency-update
-              npm ci
-              cd ../../../..
+          # - name: Install dependencies for custom JS action
+          #   run: |
+          #     cd .github/actions/js-dependency-update
+          #     npm ci
+          #     cd ../../../..
 
           - name: Check for dependency updates
             uses: ./.github/actions/js-dependency-update
+            with:
+              base-branch: ${{ inputs.base-branch }}
+              target-branch: ${{ inputs.target-branch }}
+              working-directory: ${{ inputs.working-dir }}
+              
             
