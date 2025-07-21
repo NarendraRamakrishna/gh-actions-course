@@ -16,8 +16,8 @@ inputs:
     default: .
   gh-token:
     description: The GitHub token used to create the pull request. Must have write access to the repository.
-    #required: true
-    default: '${{ secrets.GITHUB_TOKEN }}'
+    required: true
+    #default: '${{ secrets.GITHUB_TOKEN }}'
   debug:
     description: Whether the output debug messages to the console
     #required: false
