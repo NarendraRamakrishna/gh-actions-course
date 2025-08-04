@@ -9,3 +9,13 @@ inputs:
     description: 'Maximum number of trials to ping the URL'
     required: false
     default: '10'
+
+  delay:
+    description: 'Delay in seconds between each ping'
+    required: false
+    default: '5'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
