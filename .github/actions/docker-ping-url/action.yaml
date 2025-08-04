@@ -1,0 +1,11 @@
+name: Ping URL
+description: Pings a URL until maximum trials are reached. Tf results is not 200  keeps failing the action.
+
+inputs:
+  url:
+    description: 'The URL to ping'
+    required: true
+  max_trials:
+    description: 'Maximum number of trials to ping the URL'
+    required: false
+    default: '10'
