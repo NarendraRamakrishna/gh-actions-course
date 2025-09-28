@@ -1,0 +1,20 @@
+name: 18.2 - Reusable Workflows - Caller Definition
+
+on:
+    workflow_dispatch:
+        
+
+jobs:
+    deploy: 
+        uses: ./.github/workflows/18-1-reusable-workflows.yaml
+        with:
+            target-directory: 'my-app'
+
+    print-outputs:
+        needs: deploy
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print Outputs
+              run: |
+                echo "Build Status: ${{ needs.deploy.outputs.build-status }}"
+                echo "Deployed URL: ${{ needs.deploy.outputs.url }}"
