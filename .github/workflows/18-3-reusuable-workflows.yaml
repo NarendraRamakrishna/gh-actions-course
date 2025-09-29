@@ -1,0 +1,20 @@
+name: 18.3 - Reusable Workflows
+
+
+
+on:
+  workflow_call:
+  push:
+    branches:
+      - main
+    
+        
+
+jobs:
+    deploy: 
+        uses: ./.github/workflows/18-1-reusable-workflows.yaml
+        with:
+            target-directory: 'my-app'
+
+    e2e-tests:
+        uses: NarendraRamakrishna/github-actions-course-example-e2e/.github/workflows/e2e.yaml@main #<owner>/<repo>/.github/workflows/workflow-name@branch/tag/shaOfCommit
