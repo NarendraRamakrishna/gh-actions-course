@@ -4,11 +4,7 @@ name: 18.3 - Reusable Workflows
 
 on:
   workflow_call:
-  push:
-    branches:
-      - main
-    
-        
+  
 
 jobs:
     deploy: 
